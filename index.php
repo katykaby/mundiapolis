@@ -1,11 +1,23 @@
 <?php 
 
-$db = pg_connect("host=ec2-54-225-127-147.compute-1.amazonaws.com dbname=d54dn62mjkd08a user=xnlnrywqahiiep password=0df30479f2ab19bb6aeae8c3a666274fdea141110bc393c9f0b995754cc97378")/* or die("Can't connect to database".pg_last_error())*/;
-if ($db) {
-  echo "Connected ";
-}else{
-  echo "Not ncnnected ";
-  }
+$dsn = 'pgsql:'
+. 'host=ec2-54-225-127-147.compute-1.amazonaws.com;'
+.'dbname=d54dn62mjkd08a ;'
+.'user=xnlnrywqahiiep;'
+.'port=5432;'
+.'sslmode=require;'
+.'password=0df30479f2ab19bb6aeae8c3a666274fdea141110bc393c9f0b995754cc97378';
+
+
+try
+{
+  $db = new PDO($dsn);
+  die('Connected');
+}
+catch(PDOException $pe)
+{
+  die('Connection error, because: ' .$pe->getMessage());
+}
 
 
  ?>
